@@ -3,7 +3,7 @@ using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 
-namespace VentiloTray;
+namespace Ventilo;
 
 /// <summary>
 /// Acrylique qui reste « actif » même sans le focus (DesktopAcrylicBackdrop passe en

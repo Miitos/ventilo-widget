@@ -16,7 +16,7 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using WinRT.Interop;
 
-namespace VentiloTray;
+namespace Ventilo;
 
 public sealed partial class FlyoutWindow : Window
 {

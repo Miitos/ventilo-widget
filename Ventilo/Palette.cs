@@ -3,7 +3,7 @@ using Microsoft.UI.Xaml;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 
-namespace VentiloTray;
+namespace Ventilo;
 
 internal sealed record Palette(
     ElementTheme Theme, DecorKind Decor,

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using Microsoft.UI.Xaml;
 
-namespace VentiloTray;
+namespace Ventilo;
 
 public partial class App : Application
 {
@@ -26,7 +26,7 @@ public partial class App : Application
             return;
         }
 
-        _singleInstance = new Mutex(true, "VentiloTray.SingleInstance", out bool created);
+        _singleInstance = new Mutex(true, "Ventilo.SingleInstance", out bool created);
         if (!created)
         {
             Environment.Exit(0);

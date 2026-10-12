@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.Json;
 using Microsoft.Win32;
 
-namespace VentiloTray;
+namespace Ventilo;
 
 /// <summary>État supposé du ventilateur : l'API ne renvoie rien, on retient ce qu'on a envoyé.</summary>
 internal sealed class FanState
@@ -29,8 +29,12 @@ internal sealed class AppSettings
     [System.Text.Json.Serialization.JsonIgnore] public bool Transient { get; set; }
 
     private static readonly string Dir =
-        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VentiloTray");
+        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Ventilo");
     private static readonly string FilePath = Path.Combine(Dir, "settings.json");
+
+    // Avant la 1.0.0 l'app s'appelait VentiloTray : ses réglages sont repris au premier lancement
+    private static readonly string LegacyFilePath =
+        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VentiloTray", "settings.json");
 
     public static AppSettings Load()
     {
@@ -38,6 +42,12 @@ internal sealed class AppSettings
         {
             if (File.Exists(FilePath))
                 return JsonSerializer.Deserialize<AppSettings>(File.ReadAllText(FilePath)) ?? new();
+            if (File.Exists(LegacyFilePath))
+            {
+                var migrated = JsonSerializer.Deserialize<AppSettings>(File.ReadAllText(LegacyFilePath)) ?? new();
+                migrated.Save();
+                return migrated;
+            }
         }
         catch
         {
@@ -63,20 +73,22 @@ internal sealed class AppSettings
 internal static class Startup
 {
     private const string RunKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
-    private const string ValueName = "VentiloTray";
+    private const string ValueName = "Ventilo";
+    private const string LegacyValueName = "VentiloTray"; // nom d'avant la 1.0.0
 
     public static bool IsEnabled
     {
         get
         {
             using var key = Registry.CurrentUser.OpenSubKey(RunKey);
-            return key?.GetValue(ValueName) is string;
+            return key?.GetValue(ValueName) is string || key?.GetValue(LegacyValueName) is string;
         }
     }
 
     public static void Set(bool enabled)
     {
         using var key = Registry.CurrentUser.CreateSubKey(RunKey);
+        key.DeleteValue(LegacyValueName, false);
         if (enabled) key.SetValue(ValueName, $"\"{Environment.ProcessPath}\" --tray");
         else key.DeleteValue(ValueName, false);
     }

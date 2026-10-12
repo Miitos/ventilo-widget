@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace VentiloTray;
+namespace Ventilo;
 
 /// <summary>Icône de la zone de notification, en Win32 brut (WinUI 3 n'en fournit pas).</summary>
 internal sealed class TrayIcon : IDisposable
@@ -23,7 +23,7 @@ internal sealed class TrayIcon : IDisposable
     public TrayIcon()
     {
         _proc = WndProc;
-        var cls = "VentiloTray.Tray." + Guid.NewGuid().ToString("N");
+        var cls = "Ventilo.Tray." + Guid.NewGuid().ToString("N");
         var wc = new Native.WNDCLASSEX
         {
             cbSize = (uint)Marshal.SizeOf<Native.WNDCLASSEX>(),
@@ -32,7 +32,7 @@ internal sealed class TrayIcon : IDisposable
             lpszClassName = cls,
         };
         Native.RegisterClassEx(ref wc);
-        _hwnd = Native.CreateWindowEx(0, cls, "VentiloTray", 0, 0, 0, 0, 0,
+        _hwnd = Native.CreateWindowEx(0, cls, "Ventilo", 0, 0, 0, 0, 0,
             IntPtr.Zero, IntPtr.Zero, wc.hInstance, IntPtr.Zero);
         _taskbarCreated = Native.RegisterWindowMessage("TaskbarCreated");
     }

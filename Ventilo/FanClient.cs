@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace VentiloTray;
+namespace Ventilo;
 
 /// <summary>Champ d'état publié par le firmware (entités « Etat … », voir ventilo-controller/ventilo.yaml).</summary>
 internal enum StateField { On, Speed, Light, LightColor, Reverse }

@@ -1,6 +1,6 @@
 # ventilo-widget
 
-**VentiloTray** : une icône dans la zone de notification de Windows 11 ; un
+**Ventilo** : une icône dans la zone de notification de Windows 11 ; un
 clic ouvre un panneau de contrôle du ventilateur de plafond piloté par
 [ventilo-controller](https://github.com/Miitos/ventilo-controller)
 (API : [API.md](https://github.com/Miitos/ventilo-controller/blob/main/API.md)).
@@ -18,8 +18,8 @@ WinUI 3 (Windows App SDK 1.5, embarqué), .NET 8, non empaqueté.
 ## Installer / mettre à jour
 
 ```powershell
-Stop-Process -Name VentiloTray -ErrorAction SilentlyContinue
-dotnet publish .\VentiloTray\VentiloTray.csproj -c Release -r win-x64 --self-contained true -o "$env:LOCALAPPDATA\Programs\VentiloTray"
+Stop-Process -Name Ventilo -ErrorAction SilentlyContinue
+dotnet publish .\Ventilo\Ventilo.csproj -c Release -r win-x64 --self-contained true -o "$env:LOCALAPPDATA\Programs\Ventilo"
 ```
 
 Raccourci menu Démarrer : `Ventilo`. Au lancement, si « Lancer au démarrage »
@@ -43,7 +43,7 @@ chemin de l'exécutable) : glisser l'icône hélice sur la barre des tâches.
 | `Decor.cs` | Thèmes de saison : motif du coin + particules (pétales, feuilles, neige, lucioles) |
 | `Palette.cs` | Couleurs des thèmes ; liste des thèmes du sélecteur |
 | `FanClient.cs` | Commandes HTTP (espacées de 450 ms), flux SSE `/events`, correction d'état |
-| `AppSettings.cs` | Réglages + dernier état, dans `%LOCALAPPDATA%\VentiloTray\settings.json` ; démarrage auto (clé `Run` HKCU) |
+| `AppSettings.cs` | Réglages + dernier état, dans `%LOCALAPPDATA%\Ventilo\settings.json` ; démarrage auto (clé `Run` HKCU) |
 | `TrayIcon.cs`, `Native.cs` | Icône de notification en Win32 (WinUI 3 n'en fournit pas) |
 | `IconRenderer.cs` | Dessin de l'icône : hélice + pastille de vitesse, à la taille système |
 

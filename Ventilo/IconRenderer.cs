@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 
-namespace VentiloTray;
+namespace Ventilo;
 
 /// <summary>Dessine l'icône de la barre des tâches : hélice + pastille de vitesse.</summary>
 internal static class IconRenderer

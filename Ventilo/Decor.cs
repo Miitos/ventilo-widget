@@ -7,7 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using Windows.UI;
 
-namespace VentiloTray;
+namespace Ventilo;
 
 internal enum DecorKind { None, Sakura, Autumn, Winter, Summer }
 
