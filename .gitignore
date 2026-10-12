@@ -1,0 +1,10 @@
+# Build .NET / WinUI
+bin/
+obj/
+*.user
+.vs/
+*.pri
+
+# Divers
+.vscode/
+Thumbs.db
