@@ -2,7 +2,8 @@
 
 **VentiloTray** : une icône dans la zone de notification de Windows 11 ; un
 clic ouvre un panneau de contrôle du ventilateur de plafond piloté par
-[`ventilo-controller`](../ventilo-controller) (API : `ventilo-controller/API.md`).
+[ventilo-controller](https://github.com/Miitos/ventilo-controller)
+(API : [API.md](https://github.com/Miitos/ventilo-controller/blob/main/API.md)).
 
 ![Thèmes](docs/themes.gif)
 
